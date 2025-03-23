@@ -115,9 +115,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const tabs = document.querySelectorAll(".title-info");
     const sections = document.querySelectorAll(".content-section");
 
-    // Mặc định đặt "Thông tin tài khoản" là active
-    tabs[0].classList.add("section-active");
-    sections[0].classList.add("section-active");
+    // Kiểm tra xem có tab nào đã lưu trong localStorage không
+    let activeTab = localStorage.getItem("activeTab") || 0;
+    // Đặt tab đã lưu là active
+    tabs.forEach(t => t.classList.remove("section-active"));
+    sections.forEach(s => s.classList.remove("section-active"));
+    tabs[activeTab].classList.add("section-active");
+    sections[activeTab].classList.add("section-active");
 
     tabs.forEach((tab, index) => {
         tab.addEventListener("click", function () {
@@ -128,8 +132,47 @@ document.addEventListener("DOMContentLoaded", function () {
             // Thêm class section-active vào phần tử được click
             this.classList.add("section-active");
             sections[index].classList.add("section-active");
+
+            // Lưu index của tab vào localStorage
+            localStorage.setItem("activeTab", index);
         });
     });
+});
+
+// modal avatar
+document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById("modal_avatar");
+    const overlay = document.querySelector(".modal_overlay2");
+    const btnClose = document.querySelectorAll(".close-modal-avatar");
+    const btnAdd = document.querySelector(".change-icon__pen");
+    const btnSubmit = document.getElementById("openAvatar");
+
+    function openModal() {
+        modal.style.display = "block";
+        overlay.style.display = "block";
+        localStorage.setItem("modalOpenAvatar", "true"); // Lưu trạng thái modal
+    }
+
+    function closeModal() {
+        modal.style.display = "none";
+        overlay.style.display = "none";
+        localStorage.removeItem("modalOpenAvatar"); // Xóa trạng thái modal
+    }
+
+    // Kiểm tra nếu modal trước đó đã mở
+    if (localStorage.getItem("modalOpenAvatar") === "true") {
+        openModal();
+    }
+
+    btnAdd.addEventListener("click", openModal);
+    btnClose.forEach(btn => btn.addEventListener("click", closeModal));
+    overlay.addEventListener("click", closeModal);
+
+    // Giữ modal mở sau khi submit form
+    btnSubmit.addEventListener("click", function () {
+        localStorage.setItem("modalOpenAvatar", "true");
+    });
+
 });
 
 // modal
@@ -137,40 +180,34 @@ document.addEventListener("DOMContentLoaded", function () {
     const modal = document.getElementById("modal_address");
     const overlay = document.querySelector(".modal_overlay");
     const btnAdd = document.querySelector(".btn-address");
-    const btnEdit = document.querySelector(".btn-edit");
     const btnClose = document.querySelectorAll(".close-modal");
-    const btnSubmit = document.querySelector(".btn-add");
-    const title = document.querySelector(".title-address");
+    const btnSubmit = document.getElementById("openModal");
 
-    function openModal(mode) {
+    function openModal() {
         modal.style.display = "block";
         overlay.style.display = "block";
-
-        if (mode === "add") {
-            title.textContent = "THÊM ĐỊA CHỈ";
-            btnSubmit.textContent = "THÊM ĐỊA CHỈ";
-        } else {
-            title.textContent = "CẬP NHẬT ĐỊA CHỈ";
-            btnSubmit.textContent = "CẬP NHẬT ĐỊA CHỈ";
-        }
+        localStorage.setItem("modalOpen", "true"); // Lưu trạng thái modal
     }
 
     function closeModal() {
         modal.style.display = "none";
         overlay.style.display = "none";
+        localStorage.removeItem("modalOpen"); // Xóa trạng thái modal
     }
 
-    btnAdd.addEventListener("click", function () {
-        openModal("add");
-    });
+    // Kiểm tra nếu modal trước đó đã mở
+    if (localStorage.getItem("modalOpen") === "true") {
+        openModal();
+    }
 
-    btnEdit.addEventListener("click", function () {
-        openModal("edit");
-    });
-
+    btnAdd.addEventListener("click", openModal);
     btnClose.forEach(btn => btn.addEventListener("click", closeModal));
-
     overlay.addEventListener("click", closeModal);
+
+    // Giữ modal mở sau khi submit form
+    btnSubmit.addEventListener("click", function () {
+        localStorage.setItem("modalOpen", "true");
+    });
 });
 
 

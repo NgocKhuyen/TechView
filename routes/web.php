@@ -15,8 +15,17 @@ Route::get('/', [PageController::class, 'index'])->name('index');
 
 
 Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
+    Route::get('/profile', [AuthController::class, 'profile'])->name('account.profile');
+    Route::post('/profile/change-password', [AuthController::class, 'changePassword'])->name('account.changepassword');
+    Route::post('/profile/change-avatar', [AuthController::class, 'changeAvatar'])->name('account.changeavatar');
+    Route::post('/profile/update-profile', [AuthController::class, 'updateProfile'])->name('account.updateprofile');
+
+
+
     Route::get('/logout', [AuthController::class, 'logout'])->name('account.logout');
+    
 });
+
 
 Route::group(['prefix' => 'account'], function () {
     Route::get('/register', [AuthController::class, 'register'])->name('account.register');
@@ -27,11 +36,6 @@ Route::group(['prefix' => 'account'], function () {
     Route::get('/login', [AuthController::class, 'login'])->name('account.login');
     Route::post('/login', [AuthController::class, 'postLogin']);
     
-    Route::get('/profile', [AuthController::class, 'profile'])->name('account.profile');
-    Route::post('/profile', [AuthController::class, 'check_profile']);
-    
-    Route::get('/change-password', [AuthController::class, 'change_password'])->name('account.change_password');
-    Route::post('/change-password', [AuthController::class, 'check_change_password']);
     
     Route::get('/forget-password', [AuthController::class, 'forget_password'])->name('account.forget_password');
     Route::post('/forget-password', [AuthController::class, 'check_forget_password']);
@@ -45,4 +49,3 @@ Route::group(['prefix' => 'account'], function () {
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
-// Route::get('/reset-password', [AuthController::class, 'reset_password'])->name('account.reset_password');

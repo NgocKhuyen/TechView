@@ -25,6 +25,10 @@ class User extends Authenticatable
         'sodienthoai',
         'email',
         'matkhau',
+        'diachi',
+        'hinh',
+        'gioitinh',
+        'ngaysinh',
         'google_id',
         'remember_token',
         'email_verified_at'

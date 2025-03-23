@@ -30,7 +30,7 @@
                 <div class="col l-3 m-12 c-12" >
                     <div class="footer-contact">
                         <a href="#!" class="footer__logo-link">
-                            <img src="{{ asset('/img/logo.png')}}" class="footer__logo-img" alt="Logo">
+                            <img src="{{ asset('/img/logo.png') }}" class="footer__logo-img" alt="Logo">
                         </a>
                         <div class="footer-item">
                             Hotline: 

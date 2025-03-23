@@ -85,16 +85,36 @@
                             </div>
                             @if (Request::is('/'))
                                 <ul class="header__list active">
-                                    <li class="list-item">ỐNG NHÒM</li>
-                                    <li class="list-item">CELESTRON</li>
-                                    <li class="list-item">APOLLO</li>
-                                    <li class="list-item">MEADE</li>
-                                    <li class="list-item">SKYWATCHER</li>
-                                    <li class="list-item">KTV CAO CẤP</li>
-                                    <li class="list-item">KÍNH HIỂN VI</li>
-                                    <li class="list-item">THIẾT BỊ CHỤP ẢNH</li>
-                                    <li class="list-item">ĐỒ THIÊN VĂN</li>
-                                    <li class="list-item">LINH KIỆN</li>
+                                    <li class="list-item">
+                                        <a href="">ỐNG NHÒM</a> 
+                                    </li>
+                                    <li class="list-item">
+                                        <a href="">CELESTRON</a> 
+                                    </li>
+                                    <li class="list-item">
+                                        <a href="">APOLLO</a> 
+                                    </li>
+                                    <li class="list-item">
+                                        <a href="">MEADE</a> 
+                                    </li>
+                                    <li class="list-item">
+                                        <a href="">SKYWATCHER</a> 
+                                    </li>
+                                    <li class="list-item">
+                                        <a href="">KTV CAO CẤP</a> 
+                                    </li>
+                                    <li class="list-item">
+                                        <a href="">KÍNH HIỂN VI</a> 
+                                    </li>
+                                    <li class="list-item">
+                                        <a href="">THIẾT BỊ CHỤP ẢNH</a> 
+                                    </li>
+                                    <li class="list-item">
+                                        <a href="">ĐỒ THIÊN VĂN</a> 
+                                    </li>
+                                    <li class="list-item">
+                                        <a href="">LINH KIỆN</a> 
+                                    </li>
                                 </ul>
                             @endif
         
